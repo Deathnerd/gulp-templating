@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Default Site{% endblock %}</title>
+    <!-- build:css css/style.css-->
+    {% block head_css %}
+    <link rel="stylesheet" href="css/base_styles.css">
+    <link rel="stylesheet" href="css/extended_styles.css">
+    {% endblock %}
+    <!-- endbuild -->
+</head>
+<body>
+{% block body %}
+{% endblock %}
+</body>
+<!-- build:js js/site.js -->
+{% block footer_js %}
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="js/base.js"></script>
+<script src="js/extended.js"></script>
+<script src="js/other_extended.js"></script>
+{% endblock %}
+<!-- endbuild -->
+</html>

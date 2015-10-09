@@ -1,3 +1,4 @@
+//TODO: Implement automagic spritesheet generation and image optimization
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var swig = require('gulp-swig');

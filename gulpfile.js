@@ -8,6 +8,8 @@ var autoprefixer = require('gulp-autoprefixer');
 var minifyCss = require('gulp-minify-css');
 var minifyHtml = require('gulp-minify-html');
 var uglify = require("gulp-uglify");
+var psi = require("psi");
+var argv = require("yargs").argv;
 
 var src = {
     root: 'src/',
@@ -19,6 +21,8 @@ var src = {
 var dist = {
     root: "./dist"
 };
+
+var site_url = "http://example.com";
 
 // Start a serve task that will start a browserSync static server and set up a
 // reload task when the js/html/css change
@@ -43,6 +47,20 @@ gulp.task('build', function () {
             }]
         }))
         .pipe(gulp.dest(dist.root));
+});
+
+/*
+ * Gulp task to run page-speed analysis
+ */
+gulp.task('psi', function (cb) {
+    return psi.output(site_url, {
+        nokey: 'true', // or use key: ‘YOUR_API_KEY’
+        strategy: argv.strategy || "mobile"
+    }, function (err, data) {
+        if (err) {
+            console.log(err);
+        }
+    });
 });
 
 // default task
